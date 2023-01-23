@@ -13,10 +13,10 @@ def get_prediction(request):
     predictor_id = request.data['id']
     predictor = Predictor.objects.get(id=predictor_id)
     prediction = oracle_v1.predict(predictor)
-    data_result = {'data': {
+    prediction_result = {'data': {
         'prediction': prediction
     }}
-    return Response(data_result, status=status.HTTP_200_OK)
+    return Response(prediction_result, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
@@ -32,27 +32,34 @@ def get_all_predictor(request):
 
 @api_view(['POST', 'GET', 'PUT', 'DELETE'])
 def crud_predictor(request):
+    predictor_id = request.data['id']
+    try:
+        predictor = Predictor.objects.get(id=predictor_id)
+    except Predictor.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
     if (request.method == 'POST'):
         predictor_serializer = PredictorSerializer(data=request.data)
         if (predictor_serializer.is_valid()):
             predictor_serializer.save()
-            data_result = {'data': predictor_serializer.data}
-            return Response(data_result, status=status.HTTP_201_CREATED)
+            predictor_result = {'data': predictor_serializer.data}
+            return Response(predictor_result, status=status.HTTP_201_CREATED)
 
     elif (request.method == 'GET'):
-        predictor_id = request.data['id']
-        data = Predictor.objects.get(id=predictor_id)
-        data_serializer = PredictorSerializer(data)
-        data_result = {'data': data_serializer.data}
-        return Response(data_result, status=status.HTTP_200_OK)
+        predictor_serializer = PredictorSerializer(predictor)
+        predictor_result = {'data': predictor_serializer.data}
+        return Response(predictor_result, status=status.HTTP_200_OK)
 
     elif (request.method == 'PUT'):
-        predictor_id = request.data['id']
-        data_result = {'data': predictor_id}
-        return Response(data_result, status=status.HTTP_200_OK)
+        predictor_serializer = PredictorSerializer(
+            predictor, data=request.data)
+
+        if predictor_serializer.is_valid():
+            predictor_serializer.save()
+            predictor_result = {'data': predictor_serializer.data}
+            return Response(predictor_result, status=status.HTTP_200_OK)
+        return Response(predictor_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif (request.method == 'DELETE'):
-        predictor_id = request.data['id']
-        data_result = {'data': predictor_id}
-        return Response(data_result, status=status.HTTP_200_OK)
+        predictor.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
