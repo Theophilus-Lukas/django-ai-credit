@@ -5,14 +5,14 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
-from .functions import oraclev1
+from .functions import oracle_v1
 
 
 @api_view(['GET'])
 def get_prediction(request):
     predictor_id = request.data['id']
     predictor = Predictor.objects.get(id=predictor_id)
-    prediction = oraclev1.predict(predictor)
+    prediction = oracle_v1.predict(predictor)
     data_result = {'data': {
         'prediction': prediction
     }}
