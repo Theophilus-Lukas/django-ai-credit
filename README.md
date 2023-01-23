@@ -4,12 +4,18 @@
 
    `python manage.py runserver`
 
-2. Make migrations and migrate with
+   you can also specify the port by adding the port number at the end of the command, as so (for example port = 8080)
 
-   `python manage.py makemigrations APP_NAME`
+   `python manage.py runserver 8080`
 
-   > APP_NAME = creditaidjango
+2. Make migrations with (APP_NAME = creditaidjango)
 
-3. Prediction AI algorithm should go in **oracle_Vx.py**
+   `python manage.py makemigrations creditaidjango`
+
+3. And migrate with
+
+   `python manage.py migrate`
+
+4. Prediction AI algorithm should go in **oracle_Vx.py**
 
    > dir : `"AI-DJANGO/creditaidjango/functions/oracle_Vx.py"`
