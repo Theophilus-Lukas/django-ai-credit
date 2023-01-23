@@ -4,7 +4,7 @@
 
    `python manage.py runserver`
 
-   you can also specify the port by adding the port number at the end of the command, as so (for example port = 8080)
+   by default it runs on port 8000, but you can also specify the port by adding the port number at the end of the command, as so (for example port 8080)
 
    `python manage.py runserver 8080`
 
