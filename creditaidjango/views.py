@@ -10,11 +10,10 @@ from .functions import oracle_v1
 
 @api_view(['GET'])
 def get_prediction(request):
-    predictor_id = request.data['id']
-    predictor = Predictor.objects.get(id=predictor_id)
-    prediction = oracle_v1.predict(predictor)
+    ocr_result = oracle_v1.id_score_filename(request.data['filename'])
+
     prediction_result = {'data': {
-        'prediction': prediction
+        'result': ocr_result
     }}
     return Response(prediction_result, status=status.HTTP_200_OK)
 

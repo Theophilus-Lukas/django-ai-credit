@@ -1,0 +1,18 @@
+{
+    "nik": "NIK",
+    "nama": "Nama",
+    "tempat_lahir": "",
+    "tanggal_lahir": "",
+    "jenis_kelamin": "",
+    "golongan_darah": "-",
+    "alamat": "Alamat",
+    "rt": "",
+    "rw": "",
+    "kelurahan_atau_desa": "",
+    "kecamatan": "",
+    "agama": "",
+    "status_perkawinan": "KAWIN",
+    "pekerjaan": "Pekerjaan",
+    "kewarganegaraan": "WNA",
+    "SCORE_FR": "0.65"
+}

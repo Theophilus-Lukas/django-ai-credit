@@ -1,5 +1,7 @@
 # this is the prediction function
-def predict(predictor):
-    user_name = predictor.user_name
-    result = user_name + "_predicted"
+from ktpocr import ocr
+
+
+def id_score_filename(filename):
+    result = ocr.asid(filename)
     return result
