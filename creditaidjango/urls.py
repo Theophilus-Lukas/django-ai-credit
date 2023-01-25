@@ -23,4 +23,7 @@ urlpatterns = [
     path('predictor/', views.get_all_predictor),
     path('predictor/crud/', views.crud_predictor),
     path('predict/', views.get_prediction),
+
+    path('ping/', views.ping),
+    path('', views.ping),
 ]
