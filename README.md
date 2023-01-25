@@ -19,3 +19,7 @@
 4. Prediction AI algorithm should go in **oracle_Vx.py**
 
    > dir : `"AI-DJANGO/creditaidjango/functions/oracle_Vx.py"`
+
+5. build docker image with
+
+   `docker build -t theophilus/djangoai:1.0 .`
