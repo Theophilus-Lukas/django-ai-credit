@@ -5,4 +5,6 @@ services:
     image: django-ai-docker:0.0.1
     build: .
     ports:
-      - "8000:8000"
+      - 8000:8000
+    expose:
+      - "8000"
