@@ -1,5 +1,7 @@
 FROM python:3.9
 
+ENV PYTHONUNBUFFERED=1
+
 RUN apt-get update
 
 # INSTALL PREREQUSITES
@@ -22,6 +24,7 @@ RUN apt-get install tesseract-ocr -y --force-yes
 RUN apt-get install tesseract-ocr-ind -y --force-yes
 
 RUN apt install g++
+
 # INSTALL PYTHON TOOLS
 WORKDIR /app
 
@@ -45,4 +48,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["python3", "manage.py", "runserver"]
+CMD ["python", "manage.py", "runserver", "8000"]
