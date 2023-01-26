@@ -16,16 +16,16 @@ def ping(request):
 
 @api_view(['POST'])
 def test(request):
-    predictor_result = {'data': {'message': "success"}}
+    test_result = {'data': {'message': "success"}}
 
     # BEGIN TESTING BLOCK
     # predictor_serializer = PredictorSerializer(data=request.data)
     # if (predictor_serializer.is_valid()):
     #     predictor_serializer.save()
-    #     predictor_result = {'data': predictor_serializer.data}
+    #     test_result = {'data': predictor_serializer.data}
     # END TESTING BLOCK
 
-    return Response(predictor_result, status=status.HTTP_201_CREATED)
+    return Response(test_result, status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET'])

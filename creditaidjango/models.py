@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Predictor(models.Model):
-    user_name = models.CharField(max_length=255, default="no name")
+    user_name = models.CharField(max_length=255, default="no_name")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     ktppicture = models.ImageField(
