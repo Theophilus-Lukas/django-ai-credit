@@ -16,7 +16,7 @@ def ping(request):
 
 @api_view(['POST'])
 def test(request):
-    test_result = {'data': {'message': "success"}}
+    test_result = {'data': {'message': "TEST_SUCCESS"}}
 
     # BEGIN TESTING BLOCK
     # predictor_serializer = PredictorSerializer(data=request.data)
@@ -30,7 +30,13 @@ def test(request):
 
 @api_view(['GET'])
 def get_prediction(request):
-    ocr_result = oracle_v1.id_score(request.data['id'])
+    predictor_id = request.data['id']
+    try:
+        predictor = Predictor.objects.get(id=predictor_id)
+    except Predictor.DoesNotExist:
+        return Response({'message': "PREDICTOR_NOT_FOUND"}, status=status.HTTP_404_NOT_FOUND)
+
+    ocr_result = oracle_v1.id_score(predictor_id)
 
     prediction_result = {'data': {
         'result': ocr_result
@@ -62,7 +68,7 @@ def crud_predictor(request):
         try:
             predictor = Predictor.objects.get(id=predictor_id)
         except Predictor.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response({'message': "PREDICTOR_NOT_FOUND"}, status=status.HTTP_404_NOT_FOUND)
 
         if (request.method == 'GET'):
             predictor_serializer = PredictorSerializer(predictor)
