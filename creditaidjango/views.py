@@ -14,9 +14,23 @@ def ping(request):
     return Response(data_result, status=status.HTTP_200_OK)
 
 
+@api_view(['POST'])
+def test(request):
+    predictor_result = {'data': {'message': "success"}}
+
+    # BEGIN TESTING BLOCK
+    # predictor_serializer = PredictorSerializer(data=request.data)
+    # if (predictor_serializer.is_valid()):
+    #     predictor_serializer.save()
+    #     predictor_result = {'data': predictor_serializer.data}
+    # END TESTING BLOCK
+
+    return Response(predictor_result, status=status.HTTP_201_CREATED)
+
+
 @api_view(['GET'])
 def get_prediction(request):
-    ocr_result = oracle_v1.id_score_filename(request.data['filename'])
+    ocr_result = oracle_v1.id_score(request.data['id'])
 
     prediction_result = {'data': {
         'result': ocr_result
@@ -37,34 +51,34 @@ def get_all_predictor(request):
 
 @api_view(['POST', 'GET', 'PUT', 'DELETE'])
 def crud_predictor(request):
-    predictor_id = request.data['id']
-    try:
-        predictor = Predictor.objects.get(id=predictor_id)
-    except Predictor.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
     if (request.method == 'POST'):
         predictor_serializer = PredictorSerializer(data=request.data)
         if (predictor_serializer.is_valid()):
             predictor_serializer.save()
             predictor_result = {'data': predictor_serializer.data}
             return Response(predictor_result, status=status.HTTP_201_CREATED)
+    else:
+        predictor_id = request.data['id']
+        try:
+            predictor = Predictor.objects.get(id=predictor_id)
+        except Predictor.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
-    elif (request.method == 'GET'):
-        predictor_serializer = PredictorSerializer(predictor)
-        predictor_result = {'data': predictor_serializer.data}
-        return Response(predictor_result, status=status.HTTP_200_OK)
-
-    elif (request.method == 'PUT'):
-        predictor_serializer = PredictorSerializer(
-            predictor, data=request.data)
-
-        if predictor_serializer.is_valid():
-            predictor_serializer.save()
+        if (request.method == 'GET'):
+            predictor_serializer = PredictorSerializer(predictor)
             predictor_result = {'data': predictor_serializer.data}
             return Response(predictor_result, status=status.HTTP_200_OK)
-        return Response(predictor_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif (request.method == 'DELETE'):
-        predictor.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        elif (request.method == 'PUT'):
+            predictor_serializer = PredictorSerializer(
+                predictor, data=request.data)
+
+            if predictor_serializer.is_valid():
+                predictor_serializer.save()
+                predictor_result = {'data': predictor_serializer.data}
+                return Response(predictor_result, status=status.HTTP_200_OK)
+            return Response(predictor_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        elif (request.method == 'DELETE'):
+            predictor.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)

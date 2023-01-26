@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from creditaidjango import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('test/', views.test),
 
     path('predictor/', views.get_all_predictor),
     path('predictor/crud/', views.crud_predictor),
@@ -26,4 +29,4 @@ urlpatterns = [
 
     path('ping/', views.ping),
     path('', views.ping),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,6 +2,6 @@
 from ktpocr import ocr
 
 
-def id_score_filename(filename):
-    result = ocr.asid(filename)
+def id_score(data_id):
+    result = ocr.asid(data_id)
     return result
