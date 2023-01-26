@@ -9,6 +9,12 @@ from .functions import oracle_v1
 
 
 @api_view(['GET'])
+def ping(request):
+    data_result = {'data': {'message': "Hello World"}}
+    return Response(data_result, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
 def get_prediction(request):
     ocr_result = oracle_v1.id_score_filename(request.data['filename'])
 
