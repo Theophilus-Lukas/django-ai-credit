@@ -27,3 +27,7 @@
    or if rebuilding is not required just
 
    `docker compose up`
+
+6. image is in docke hub
+
+   `docker pull theophiluslukas/django-ai:0.1`
