@@ -4,9 +4,13 @@ from .serializers import PredictorSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from django.views.decorators.csrf import csrf_exempt
+# from django.views.decorators.csrf import csrf_exempt
+from csrfexempt import CsrfExemptSessionAuthentication
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 from .functions import oracle_v1
+
+authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
 
 @api_view(['GET'])
@@ -56,7 +60,7 @@ def get_all_predictor(request):
     return JsonResponse(data_result)
 
 
-@csrf_exempt
+# @csrf_exempt
 @api_view(['POST', 'GET', 'PUT', 'DELETE'])
 def crud_predictor(request):
     if (request.method == 'POST'):
