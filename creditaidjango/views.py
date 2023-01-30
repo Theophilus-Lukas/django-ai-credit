@@ -10,7 +10,7 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 
 from .functions import oracle_v1
 
-authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+authentication_classes = (CsrfExemptSessionAuthentication)
 
 
 @api_view(['GET'])
@@ -94,3 +94,7 @@ def crud_predictor(request):
         elif (request.method == 'DELETE'):
             predictor.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+crud_predictor.authentication_classes = []
+crud_predictor.permission_classes = []
