@@ -9,6 +9,8 @@ import dlib
 import face_recognition
 import math
 
+from creditaidjango.functions import textparser
+
 
 class KTPOCR(object):
     def __init__(self, image, image2):
@@ -229,6 +231,10 @@ class KTPOCR(object):
         image2 = self.crop_img2(self.img2)
         self.Similar(image1, image2)
         raw_text = self.process(self.image)
+
+        test_extract = textparser.lukasextract(raw_text)
+        print(test_extract)
+
         self.extract(raw_text)
 
     def to_dict(self):
