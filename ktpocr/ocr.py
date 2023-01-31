@@ -20,7 +20,7 @@ faux_response = {
         "TEMPAT_LAHIR": "BREBES",
         "TANGGAL_LAHIR": "2002-01-28",
         "GOLONGAN_DARAH": "-",
-        "AGAMA": "ISLAM",
+        "AGAMA": "TEST_AGAMA",
         "STATUS_KAWIN": "KAWIN",
         "STATUS_HUBUNGAN_KELUARGA": "ANAK",
         "PENYANDANG_CACAT": None,
@@ -48,7 +48,8 @@ faux_response = {
         "TANGGAL_KAWIN": None,
         "NOMOR_AKTA_CERAI": None,
         "TANGGAL_CERAI": None,
-        "UPDATE_TERAKHIR": "07-AUG-18"
+        "UPDATE_TERAKHIR": "07-AUG-18",
+        "TEST_BOOL": "TRUE"
     }
 }
 
