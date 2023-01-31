@@ -21,7 +21,7 @@ faux_response = {
         "TANGGAL_LAHIR": "2002-01-28",
         "GOLONGAN_DARAH": "-",
         "AGAMA": "ISLAM",
-        "STATUS_KAWIN": "BELUM KAWIN",
+        "STATUS_KAWIN": "KAWIN",
         "STATUS_HUBUNGAN_KELUARGA": "ANAK",
         "PENYANDANG_CACAT": None,
         "PENDIDIKAN_AKHIR": "SLTP/SEDERAJAT",
