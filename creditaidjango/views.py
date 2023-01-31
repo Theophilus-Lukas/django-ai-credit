@@ -35,7 +35,7 @@ def test(request):
 
 @api_view(['GET'])
 def get_prediction(request):
-    predictor_id = request.data['id']
+    predictor_id = request.query_params['id']
     try:
         predictor = Predictor.objects.get(id=predictor_id)
     except Predictor.DoesNotExist:
