@@ -7,4 +7,5 @@ from .models import Predictor
 class PredictorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Predictor
-        fields = ['id', 'user_name', 'created_at', 'updated_at']
+        fields = ['id', 'user_name', 'created_at',
+                  'updated_at', 'ktppicture', 'selfiepicture']

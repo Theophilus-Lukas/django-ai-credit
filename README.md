@@ -20,6 +20,14 @@
 
    > dir : `"AI-DJANGO/creditaidjango/functions/oracle_Vx.py"`
 
-5. build docker image with
+5. build and run with docker compose
 
-   `docker build -t theophilus/djangoai:1.0 .`
+   `docker compose up --build`
+
+   or if rebuilding is not required just
+
+   `docker compose up`
+
+6. image is in docke hub
+
+   `docker pull theophiluslukas/django-ai:0.1`

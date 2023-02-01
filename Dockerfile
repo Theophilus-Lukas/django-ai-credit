@@ -28,8 +28,6 @@ RUN apt install g++
 # INSTALL PYTHON TOOLS
 WORKDIR /app
 
-COPY requirements.txt ./
-
 RUN pip install wheel
 
 RUN pip install cmake
@@ -42,8 +40,12 @@ RUN pip install numpy scipy matplotlib scikit-image scikit-learn ipython
 
 RUN pip install dlib
 
+COPY requirements.txt ./
+
 RUN pip install -r requirements.txt
 
 COPY . .
+
+RUN python manage.py migrate
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
