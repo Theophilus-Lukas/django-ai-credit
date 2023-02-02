@@ -104,11 +104,14 @@ class KTPOCR(object):
                 self.result.nik = self.nik_extract(word[-1].replace(" ", ""))
                 if len(self.result.nik) > 16:
                     self.result.nik = self.result.nik[:16]
+                self.result.nik = re.sub('\D', '', self.result.nik)
                 continue
 
             if "Nama" in word:
                 word = word.split(':')
                 self.result.nama = word[-1].replace('Nama ', '')
+                self.result.nama = re.sub(
+                    r'[^\w]', ' ', self.result.nama).strip()
                 continue
 
             if "Lahir" in word:

@@ -117,16 +117,20 @@ def asid(data_id):
 
     if ASIDScore >= 0.85 and ASIDScore <= 1:
         SCORE_CAT = "Verifikasi Sangat Baik & Fraud Sangat Rendah"
+        PREDICAT = "Aa+"
     elif ASIDScore >= 0.75 and ASIDScore < 0.85:
         SCORE_CAT = "Verifikasi Baik & Fraud Rendah"
+        PREDICAT = "Bb+"
     elif ASIDScore >= 0.50 and ASIDScore < 0.75:
         SCORE_CAT = "Verifikasi Buruk & Fraud Tinggi"
+        PREDICAT = "Cc-"
     elif ASIDScore < 0.50:
         SCORE_CAT = "Verifikasi Sangat Buruk & Fraud Sangat Tinggi"
+        PREDICAT = "Dd-"
 
     # python object to be appended
     SCORE = {"SCORE_OCR": str((OcrScore)), "SCORE_ASID": str(
-        round(ASIDScore, 2)), "SCORE_CAT": SCORE_CAT}
+        round(ASIDScore, 2)), "SCORE_CAT": SCORE_CAT, "PREDICATE": PREDICAT}
     ocr_dict.update(SCORE)
 
     return ocr_dict
