@@ -104,10 +104,9 @@ def score(data):
         return print("data tidak bisa dieksekusi karena NIK salah")
 
 
-def asid(data_id):
-    predictor_data = Predictor.objects.get(id=data_id)
-    ktppath = os.path.join("media/", str(predictor_data.ktppicture))
-    selfiepath = os.path.join("media/", str(predictor_data.selfiepicture))
+def asid(selfiepath, ktppath):
+    selfiepath = os.path.join("media/", str(selfiepath))
+    ktppath = os.path.join("media/", str(ktppath))
 
     ocr = KTPOCR(ktppath, selfiepath)
     ocr_dict = ocr.to_dict()

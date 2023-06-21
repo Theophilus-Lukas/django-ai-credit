@@ -20,13 +20,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('image/all/', views.get_all_image),
+    path('image/upload/', views.upload_image_data),
+    path('image/delete/', views.delete_image_data),
+
+    path('ktpverification/', views.ktp_verification),
+
     path('admin/', admin.site.urls),
-    path('test/', views.test),
-
-    path('predictor/', views.get_all_predictor),
-    path('predictor/crud/', views.crud_predictor),
-    path('predict/', views.get_prediction),
-
     path('ping/', views.ping),
     path('', views.ping),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
