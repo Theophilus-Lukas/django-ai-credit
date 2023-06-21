@@ -24,7 +24,15 @@ urlpatterns = [
     path('image/upload/', views.upload_image_data),
     path('image/delete/', views.delete_image_data),
 
+    # feature 1
     path('ktpverification/', views.ktp_verification),
+
+    # feature 2
+    path('nib/', views.nib_extract),
+    path('siup/', views.siup_extract),
+    path('tdp/', views.tdp_extract),
+    path('skdp/', views.skdp_extract),
+    path('npwp/', views.npwp_extract),
 
     path('admin/', admin.site.urls),
     path('ping/', views.ping),
